@@ -1,7 +1,13 @@
 from flask import Flask, render_template, request, redirect
+from models.Product import Product
 from controllers.ProductController import ProductController
 
 app = Flask(__name__)
+product = Product()
+
+with app.app_context():
+    product.create_table()
+    
 product_controller = ProductController()
 
 @app.route('/')
